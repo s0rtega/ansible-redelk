@@ -8,17 +8,10 @@
 
   tasks:
     - name: Downloading Latest RedElk to /tmp
-      shell: curl -s https://api.github.com/repos/outflanknl/redelk/releases/latest | grep tarball_url | cut -d'"' -f4 | wget -O /tmp/redelk_latest.tgz -qi -
+      shell: git clone https://github.com/outflanknl/RedELK.git /tmp/redelk_latest
       args:
         warn: false
       tags: [prep_download]
-
-    # Using tar command instead of unarchive module, which threw errors every time.
-    - name: Extracting
-      shell: mkdir -p /tmp/redelk_latest && tar -zxvf /tmp/redelk_latest.tgz -C /tmp/redelk_latest --strip-components=1
-      args:
-        warn: false
-      tags: [prep_extract]
 
     - name: Updating certs/config.conf
       lineinfile:
