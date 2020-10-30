@@ -7,8 +7,8 @@
   tags: [prep]
 
   tasks:
-    - name: Downloading Latest RedElk to /tmp
-      shell: git clone https://github.com/outflanknl/RedELK.git /tmp/redelk_latest
+    - name: Downloading Latest RedElk 1.X to /tmp
+      shell: rm -rf /tmp/redelk_latest && git clone https://github.com/outflanknl/RedELK.git /tmp/redelk_latest
       args:
         warn: false
       tags: [prep_download]
