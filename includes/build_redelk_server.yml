@@ -69,12 +69,12 @@
       copy:
         src: ../templates/htpasswd.users
         dest: /etc/nginx/htpasswd.users
-        when: htpasswd.stat.exists == true
+      when: htpasswd.stat.exists == true
       tags: [elkserver_post_config]
 
     - name: Restarting nginx
       service:
         name: nginx
         state: restarted
-        when: htpasswd.stat.exists == true
+      when: htpasswd.stat.exists == true
       tags: [elkserver_post_config]
