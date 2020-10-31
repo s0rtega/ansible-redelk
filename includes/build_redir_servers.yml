@@ -44,7 +44,7 @@
       copy:
         src: ../templates/apache_include.conf
         dest: /etc/apache2/redelk_include.conf
-      when: apache_exists.stat.isdir is defined
+      when: apache_exists.stat.isdir == true
       tags: [redir_post_config]
 
     - name: Updating Apache conf template
@@ -52,5 +52,5 @@
         path: /etc/apache2/redelk_include.conf
         regexp: '\|HOSTNAME\|'
         replace: "{{ hostvars[inventory_hostname]['filebeat_id'] }}"
-      when: apache_exists.stat.isdir is defined
+      when: apache_exists.stat.isdir == true
       tags: [redir_post_config]

@@ -26,9 +26,9 @@
         - {regexp: '^OU = ', line: 'OU = {{ cert_OU }}'}
         - {regexp: '^CN = ', line: 'CN = {{ cert_CN }}'}
         - {regexp: '^emailAddress = ', line: 'emailAddress = {{ cert_email }}'}
-        - {regexp: '^DNS.1 = ', line: 'DNS.1 = {{ redelk_server_host }}'}
+        - {regexp: '^DNS.1 = ', line: ""}
         - {regexp: '^DNS.2 = ', line: ""}
-        - {regexp: '^IP.1 = ', line: ""}
+        - {regexp: '^IP.1 = ', line: 'IP.1 = {{ redelk_server_host }}'}
       tags: [prep_cert]
 
     - name: Updating alarm.json.conf
