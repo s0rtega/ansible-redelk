@@ -14,7 +14,7 @@
         dest: /tmp
       tags: [teamserver_copy]
 
-    - name: Extracting teamserver.tgz
+    - name: Extracting c2servers.tgz
       shell: mkdir -p /tmp/c2servers && tar -zxvf /tmp/c2servers.tgz -C /tmp/c2servers --strip-components=1
       args:
         warn: false

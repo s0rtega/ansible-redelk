@@ -48,6 +48,7 @@
       fail:
         msg: "Error occurred. Check /tmp/elkserver/redelk-install.log for details."
       when: '"ERROR" in install_output.stdout'
+      ignore_errors: true
       tags: [elkserver_install]
 
     - debug:
