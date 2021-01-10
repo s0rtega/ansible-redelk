@@ -60,4 +60,3 @@
         src: ../templates/elkserver_cron_redelk.j2
         dest: /etc/cron.d/redelk
       tags: [elkserver_post_config]   
-      

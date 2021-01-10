@@ -9,7 +9,8 @@
 #
 #
 # Cobalt strike installation path. Do not include trailing slash
-cobaltstrike_install_dir: /root/tools/cobaltstrike
+c2type: cobaltstrike
+c2type_install_dir: /root/tools/{{ c2type }}
 
 # Scenario Name
 scenario_name: short_haul_c2
