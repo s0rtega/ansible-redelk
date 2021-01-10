@@ -16,12 +16,6 @@
       when: re_count != '1'
       tags: [elkserver_copy, elkserver_ec2, elkserver_install]
 
-    - name: Checking for template htpasswd.users
-      stat:
-        path: ../templates/htpasswd.users
-      register: htpasswd
-      tags: [elkserver_post_config]
-
 - hosts: redelk_server
   vars_files:
     - ../vars/redelk.yml
@@ -54,28 +48,16 @@
       fail:
         msg: "Error occurred. Check /tmp/elkserver/redelk-install.log for details."
       when: '"ERROR" in install_output.stdout'
+      ignore_errors: true
       tags: [elkserver_install]
 
     - debug:
-        msg: "{{ inventory_hostname }}"
+        msg: "Inventory hostname: {{ inventory_hostname }}"
       tags: [elkserver_post_config]
 
     - name: Copying getremotelogs.sh
       template:
         src: ../templates/elkserver_cron_redelk.j2
         dest: /etc/cron.d/redelk
-      tags: [elkserver_post_config]
-
-    - name: Copying htpasswd.users
-      copy:
-        src: ../templates/htpasswd.users
-        dest: /etc/nginx/htpasswd.users
-      when: htpasswd.stat.exists is defined
-      tags: [elkserver_post_config]
-
-    - name: Restarting nginx
-      service:
-        name: nginx
-        state: restarted
-      when: htpasswd.stat.exists is defined
-      tags: [elkserver_post_config]
+      tags: [elkserver_post_config]   
+      
